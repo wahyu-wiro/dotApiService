@@ -1193,7 +1193,7 @@ exports.updateProfile = function (data) {
                                 return;
                             }                            
                         }else{
-                            resolve(cd);
+                            resolve(cd); 
                             return;
 
                         }
