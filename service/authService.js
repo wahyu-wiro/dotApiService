@@ -6,7 +6,7 @@ var accountSchema = require('../config/accountSchema');
 var otpSchema = require('../config/otpSchema');
 var authService = require('../service/authService');
 var masterService = require('../service/masterService');
-const pgCon = require('../config/pgConfig');
+// const pgCon = require('../config/pgConfig');
 let message = {};
 const asim = require('../config/asymmetric');
 const fs = require('fs');
@@ -415,45 +415,6 @@ exports.checkAccountUltipage = function (data) { // checking account for edit pr
         }
     })
 }
-exports.updateDeviceId = function (data) { // checking account for edit profile
-    console.log('updateDeviceId =>', data)
-    return new Promise(async function (resolve, reject) {
-        try {
-            let cd = await updateDeviceId(data);
-            resolve(cd);
-        } catch (e) {
-            console.log('Error updateDeviceId ===> ', e);
-            return ({
-                responseCode: process.env.ERRORINTERNAL_RESPONSE,
-                responseMessage: 'Internal server error, please try again!'
-            })
-        }
-    })
-}
-async function updateDeviceId(data) {
-    let res = {};
-    try {
-        var query = `update "MerchantAccounts" set "deviceId"=$1, "updatedAt"=$2 where "merchantId"=$3 RETURNING *`;
-        var param = [data.deviceId, 'NOW()', data.merchantId];
-        console.log('updateDeviceId =>', {query: query, param: param});
-        var exe = await pgCon.query(query, param);
-        if(exe.rowCount > 0) {
-            res.responseCode = process.env.SUCCESS_RESPONSE;
-            res.responseMessage = 'Success';    
-        }else{
-            res.responseCode = process.env.NOTFOUND_RESPONSE;
-            res.responseMessage = 'Not Found';    
-        }
-        return (res);
-
-    } catch (e) {
-        console.log('Error check account on ultipage ==> ', e);
-        res.responseCode = process.env.ERRORINTERNAL_RESPONSE;
-        res.responseMessage = 'Internal server error, please try again!';
-        return (res);
-    }
-}
-
 
 async function findAccountByArrId(arrId) {
     try {

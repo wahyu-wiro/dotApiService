@@ -5,7 +5,7 @@ var mongo = require('../config/mongo');
 var accountSchema = require('../config/accountSchema');
 var authService = require('../service/authService');
 var masterService = require('../service/masterService');
-const pgCon = require('../config/pgConfig');
+// const pgCon = require('../config/pgConfig');
 let message = {};
 const asim = require('../config/asymmetric');
 const notification = require('../config/notification');
@@ -22,9 +22,6 @@ var query = '';
 var param = '';
 var exc = '';
 
-process.env.ULTIPAGE_COMPROF_URL
-process.env.ULTIPAGE_MERCHANT_PUBLIC_IMG_PATH
-process.env.ULTIPAGE_SUPPORT_EMAIL
 function randomString() {
     var chars = "0123456789";
     var string_length = 5;
@@ -92,47 +89,6 @@ async function getProfileAccount(data) {
             responseMessage: 'Internal server error, please try again!'
         })
     }
-}
-
-function updateProfileAccountData(data) {
-    return new Promise(async function (resolve, reject) {
-        try {
-            console.log('DATA => ', data)
-            data.apiService = process.env.SERVICE_CODE;
-            request.put({
-                "headers": {
-                    "content-type": "application/json",
-                    "apiService": data.apiService,
-                    "token": '',
-                    "signature": '',
-                    'secretKey': '',
-                    'clientKey': '',
-                    'aes': ''
-                },
-                "body": data,
-                "url": process.env.ACCOUNT_SERVICE_LOCAL_HOST + "/account/profile/partner",
-                "json": true,
-            }, async function (error, response, body) {
-                if (error) {
-                    console.log('Error bridging to account service => ', error)
-                    message = {
-                        "responseCode": process.env.ERRORINTERNAL_RESPONSE,
-                        "responseMessage": "Internal server error. Try again later!"
-                    }
-                    resolve(message);
-                } else {
-                    resolve(body);
-                }
-            });
-        } catch (e) {
-            console.log('Error update profile account data ===> ', e);
-            notification.sendErrorNotification(e.stack);
-            resolve({
-                responseCode: process.env.ERRORINTERNAL_RESPONSE,
-                responseMessage: 'Internal server error, please try again!'
-            })
-        }
-    })
 }
 
 exports.updateProfile = function (data) {

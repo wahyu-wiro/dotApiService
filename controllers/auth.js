@@ -2,13 +2,10 @@
 
 require('dotenv').config();
 var utils = require('../utils/writer.js');
-const pgCon = require('../config/pgConfig');
+// const pgCon = require('../config/pgConfig');
 const request = require('request');
 let isValid = '';
 const asym = require('../config/asymmetric');
-// var arrStatus = ['Pending', 'Assign', 'Pick up', 'On Delivery', 'Delivered'];
-var arrStatus = ['Pending', 'Assigned', 'Pickup', 'Delivering', 'Delivered', 'Cancelled'];
-var arrService = ['sameDay', 'priority'];
 const validator = require('../class/validator');
 const authService = require('../service/authService');
 const checking = require('../controllers/check');

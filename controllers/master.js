@@ -1,7 +1,7 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-const pgCon = require('../config/pgConfig');
+// const pgCon = require('../config/pgConfig');
 var isValid = '';
 const asym = require('../config/asymmetric');
 const check = require('../controllers/check');
