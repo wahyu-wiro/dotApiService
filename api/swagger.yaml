@@ -1,0 +1,2622 @@
+---
+  swagger: "2.0"
+  info:
+    description: "Ulti send is provide service"
+    version: "0.0.1"
+    title: "Dot - test"
+    termsOfService: "http://swagger.io/terms/"
+    contact:
+      email: "phawiro@gmail.cm"
+    license:
+      name: "Apache 2.0"
+      url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  host: "192.168.0.96"
+  basePath: "/dot"
+  tags:
+    - name: "Auth"
+      description: "Authorization access"
+    - name: "Master"
+      description: "For get master data"
+  schemes:
+    - "https"
+    - "http"
+
+  paths:
+    /url:
+      get:
+        tags:
+          - "Master"
+        summary: "Change URL name of merchant page"
+        description: "Change URL name of merchant page"
+        operationId: "getUrl"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            required: true
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      put:
+        tags:
+          - "Master"
+        summary: "Change URL name of merchant page"
+        description: "Change URL name of merchant page"
+        operationId: "editUrl"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          # - name: "aes"
+          #   in: "header"
+          #   required: true
+          #   type: "string"
+          # - name: "clientKey"
+          #   in: "header"
+          #   required: true
+          #   type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/editUrl"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /insight:
+      get:
+        tags:
+          - "Master"
+        summary: "Get subscription data for merchant"
+        description: "Get subscription data for merchant"
+        operationId: "getInsight"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /subscription:
+      get:
+        tags:
+          - "Master"
+        summary: "Get subscription data for merchant"
+        description: "Get subscription data for merchant"
+        operationId: "getSubscription"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "id"
+            in: "query"
+            required: false
+            type: "string"
+            description: "ID of Subscription"
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"            
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /page/publish:
+      post:
+        tags:
+          - "Master"
+        summary: "Publish or Unpublish merchant page"
+        description: "Publish or Unpublish merchant page"
+        operationId: "publishPage"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/publishPage"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /template:
+      get:
+        tags:
+          - "Master"
+        summary: "Get template page"
+        description: "Get template page"
+        operationId: "getTemplate"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize
+        x-swagger-router-controller: "master"
+
+    /confirmPassword:
+      put:
+        tags:
+          - "Auth"
+        summary: "Confirm OTP Code"
+        description: "Confirm OTP Code"
+        operationId: "otpConfirmation"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "appId"
+            in: "header"
+            required: false
+            type: "string"
+          - name: "appSignature" 
+            in: "header"
+            required: false
+            type: "string"
+          - name: "deviceId"
+            in: "header"
+            required: false
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/otpConfirmation"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /otpUpdate:
+      put:
+        tags:
+          - "Auth"
+        summary: "request OTP Code for already login"
+        description: "request OTP Code for already login"
+        operationId: "otpUpdate"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "appId"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "deviceId"
+            in: "header"
+            required: true
+            type: "string"      
+          - name: "appSignature" # kombinasinya ==> appName:appId (encrypt base64)
+            in: "header"
+            required: true
+            type: "string"                
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/otpRequest"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /register:
+      post:
+        tags:
+          - "Auth"
+        summary: "Register account ultipage"
+        description: "Register account ultipage"
+        operationId: "registerAccount"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "appId"
+            in: "header"
+            required: false
+            type: "string"
+            description: "id of app"
+          - name: "deviceId"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: false
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: false
+            type: "string"            
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/registerAccount"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /merchant:
+      get:
+        tags:
+          - "Master"
+        summary: "Get merchant"
+        description: "Get merchant list"
+        operationId: "getMerchant"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "id"
+            in: "query"
+            description: "ID Link"
+            required: false
+            type: "string"
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+          - name: "apiService"
+            in: "header"
+            description: "apiService"
+            required: false
+            type: "string"
+          - name: "param"
+            in: "header"
+            description: "false"
+            required: false
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+        
+    /visit:
+      get:
+        tags:
+          - "Master"
+        summary: "Get visit"
+        description: "Get merchant visit"
+        operationId: "getMerchantVisit"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "signature of account"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "token of account"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+          - name: "apiService"
+            in: "header"
+            description: "apiService"
+            required: false
+            type: "string"
+          - name: "param"
+            in: "header"
+            description: "false"
+            required: false
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /link:
+      get:
+        tags:
+          - "Master"
+        summary: "Get merchant link"
+        description: "Get merchant link"
+        operationId: "getLink"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "id"
+            in: "query"
+            description: "ID Link"
+            required: false
+            type: "string"
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      delete:
+        tags:
+          - "Master"
+        summary: "Delete merchant link"
+        description: "Delete merchant link"
+        operationId: "deleteLink"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "linkId"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      post:
+        tags:
+          - "Master"
+        summary: "Edit merchant link"
+        description: "Edit merchant link"
+        operationId: "postLink"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/editLink"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /paymentMethod:
+      get:
+        tags:
+          - "Master"
+        summary: "Edit SEO data"
+        description: "Edit SEO data"
+        operationId: "getPaymentMethod"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+          - name: "param"
+            in: "header"
+            description: "param"
+            required: false
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /seo:
+      get:
+        tags:
+          - "Master"
+        summary: "Edit SEO data"
+        description: "Edit SEO data"
+        operationId: "getSeo"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"            
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      post:
+        tags:
+          - "Master"
+        summary: "Edit SEO data"
+        description: "Edit SEO data"
+        operationId: "postSeo"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/editSeo"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /product:
+      delete:
+        tags:
+          - "Master"
+        summary: "Delete merchant product"
+        description: "Delete merchant product"
+        operationId: "deleteProduct"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "productId"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      post:
+        tags:
+          - "Master"
+        summary: "Edit / Create merchant product"
+        description: "Edit / Create merchant product"
+        operationId: "postProduct"
+        produces:
+          - "application/xml"
+          - "application/json"
+        consumes:
+          - "application/xml"
+          - "application/json"
+          - "multipart/form-data"
+          # - "application/x-www-form-urlencoded"
+        parameters:
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "img"
+            in: "formData"
+            type: "string"
+            required: false
+          - name: "pageId"
+            in: "formData"
+            type: "string"
+            required: false
+          - name: "productId"
+            in: "formData"
+            type: "string"
+            required: false
+          - name: "name"
+            in: "formData"
+            type: "string"
+            required: true
+          - name: "description"
+            in: "formData"
+            type: "string"
+            required: true
+          - name: "price"
+            in: "formData"
+            type: "string"
+            required: true
+          - name: "discountPrice"
+            in: "formData"
+            type: "string"
+            required: false
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      get:
+        tags:
+          - "Master"
+        summary: "Get merchant product"
+        description: "Get merchant product"
+        operationId: "getProduct"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "id"
+            in: "query"
+            required: false
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /category:
+      get:
+        tags:
+          - "Master"
+        summary: "Get category"
+        description: "Get category"
+        operationId: "getCategory"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "id"
+            in: "query"
+            required: false
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+          - name: "apiService"
+            in: "header"
+            description: "clientKey"
+            required: false
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /subcategory:
+      get:
+        tags:
+          - "Master"
+        summary: "Get sub category"
+        description: "Get sub category"
+        operationId: "getSubCategory"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "id"
+            in: "query"
+            required: false
+            type: "string"
+          - name: "categoryId"
+            in: "query"
+            required: false
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+          - name: "apiService"
+            in: "header"
+            description: "clientKey"
+            required: false
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /merchantCategory:
+      post:
+        tags:
+          - "Master"
+        summary: "Edit merchant link"
+        description: "Edit merchant link"
+        operationId: "postMerchantCategory"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "signature of merchant"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "token of merchant"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/merchantCategory"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /merchantSubCategory:
+      post:
+        tags:
+          - "Master"
+        summary: "Edit merchant link"
+        description: "Edit merchant link"
+        operationId: "postMerchantSubCategory"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "signature of merchant"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "token of merchant"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/merchantCategory"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /regency:
+      get:
+        tags:
+          - "Master"
+        summary: "Get regency"
+        description: "Get regency"
+        operationId: "getRegency"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          # - name: "appSignature"
+          #   in: "header"
+          #   description: "id of device"
+          #   required: true
+          #   type: "string"
+          - name: "param"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+        
+    /profile:
+      get:
+        tags:
+          - "Auth"
+        summary: "Get merchant profile"
+        description: "Get merchant profile"
+        operationId: "getProfile"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - name: "param"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+      put:
+        tags:
+          - "Auth"
+        summary: "Update merchant profile"
+        description: "Update merchant profile"
+        operationId: "updateProfile"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - name: "deviceId"
+            in: "header"
+            description: "id of device"
+            required: false
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/updateProfile"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /login:
+      post:
+        tags:
+          - "Auth"
+        summary: "Login access"
+        description: "Login access"
+        operationId: "loginAccount"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "continue"
+            in: "query"
+            required: false
+            type: "string"
+            description: "Continue link after login"
+          - name: "flowEntry"
+            in: "query"
+            description: "Access entry"
+            required: false
+            type: "string"
+          - name: "appSignature"
+            in: "header"
+            description: "Signature of ultipage app"
+            required: false
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/loginAccount"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /account:
+      get:
+        tags:
+          - "Auth"
+        summary: "Login access"
+        description: "get access"
+        operationId: "getAccount"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "appSignature"
+            in: "header"
+            description: "Signature of ultipage app"
+            required: true
+            type: "string"
+          - name: "param"
+            in: "header"
+            description: "param of ultipage app"
+            required: true
+            type: "string"
+
+        responses:
+          "200":
+            description: "Account get response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /uploadImage:
+      post:
+        tags:
+          - "Auth"
+        summary: "Upload ultipage image"
+        description: "Upload ultipage image"
+        operationId: "uploadImage"
+        consumes:
+          - "multipart/form-data"
+          - "application/x-www-form-urlencoded"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+            description: "Token"
+          - name: "signature"
+            in: "header"
+            description: "Signature"
+            required: true
+            type: "string"
+          - name: "behalf"
+            in: "formData"
+            description: "Signature"
+            required: true
+            type: "string"
+          - in: "formData"
+            name: "img"
+            required: true
+            type: "string"
+            # schema:
+            #   $ref: "#/definitions/uploadImage"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /logout:
+      post:
+        tags:
+          - "Auth"
+        summary: "Login access"
+        description: "Login access"
+        operationId: "logoutAccount"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            description: "Signature of ultipage app"
+            required: false
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "auth"
+
+    /switch/{category}:
+      put:
+        tags:
+          - "Master"
+        summary: "Switch properties item on/off"
+        description: "Switch properties item on/off"
+        operationId: "switchItem"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "category" # seo , cart
+            in: "path"
+            required: true
+            type: "string"
+          - name: "switch" # on/off
+            in: "header"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "master"
+
+    /transaction:
+      post:
+        tags:
+          - "Transaction"
+        summary: "Switch properties item on/off"
+        description: "Switch properties item on/off"
+        operationId: "transactionRequest"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/transactionRequest"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "transaction"
+
+    /callback:
+      get:
+        tags:
+          - "Transaction"
+        summary: "Get merchant link"
+        description: "Get merchant link"
+        operationId: "updatePayment"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "id"
+            in: "query"
+            description: "ID Transaction"
+            required: false
+            type: "string"
+          - name: "signature"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "token"
+            in: "header"
+            description: "id of device"
+            required: true
+            type: "string"
+          - name: "aes"
+            in: "header"
+            description: "aes"
+            required: true
+            type: "string"
+          - name: "clientKey"
+            in: "header"
+            description: "clientKey"
+            required: true
+            type: "string"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "transaction"
+
+    /gopay:
+      post:
+        tags:
+          - "Transaction"
+        summary: "gopay transaction request"
+        description: "gopay transaction request"
+        operationId: "gopayTransactionRequest"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name: "token"
+            in: "header"
+            required: true
+            type: "string"
+          - name: "signature"
+            in: "header"
+            required: true
+            type: "string"
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/gopayTransactionRequest"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "transaction"
+        
+    /notification/duitku:
+      post:
+        tags:
+          - "Transaction"
+        summary: "Switch properties item on/off"
+        description: "Switch properties item on/off"
+        operationId: "notificationPayment"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - in: "body"
+            name: "body"
+            required: true
+            schema:
+              $ref: "#/definitions/notificationPayment"
+        responses:
+          "200":
+            description: "Account post response"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: text description.
+          "401":
+            description: "Invalidunauthorize"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+          "500":
+            description: "Internal server error"
+            schema:
+              type: object
+              properties:
+                responseCode:
+                  type: integer
+                  description: code of response.
+                responseText:
+                  type: string
+                  description: unauthorize.
+        x-swagger-router-controller: "transaction"
+  
+  definitions:
+    registerAccount:
+      type: "object"
+      properties:
+        fullName:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        phone:
+          type: "string"
+        phoneCode:
+          type: "string"
+        accountPriority: #partner
+          type: "string"
+        userType: #ultipage
+          type: "string"
+      example:
+        code: 0
+        type: "application/json"
+        message: "message"
+
+    loginAccount:
+      type: "object"
+      properties:
+        phoneCode:
+          type: "string"
+        phone:
+          type: "string"
+        deviceId:
+          type: "string"
+
+    editLink:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        link:
+          type: "string"
+        linkId: #jika ada
+          type: "string"
+
+    merchantCategory:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          example: "1"
+        name:
+          type: "string"
+          example: "Makanan & Minuman"
+
+
+    postPage:
+      type: "object"
+      properties:
+        pageName:
+          type: "string"
+        pageImg:
+          type: "string"
+        pageDescription:
+          type: "string"
+        catalogue:
+          type: "string"
+
+    transactionRequest:
+      type: "object"
+      properties:
+        paymentMethod: #code payment method
+          type: "string"
+        # paymentAmount:
+        #   type: "string"
+        subscriptionId:
+          type: "string"
+        
+    otpRequest:
+      type: "object"
+      properties:
+        phone_code:
+          type: "string"
+        phone:
+          type: "string"
+
+    gopayTransactionRequest:
+      type: "object"
+      properties:
+        merchantId: 
+          type: "string"
+
+
+    updateProfile:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+        phoneCode:
+          type: "string"
+        phone:
+          type: "string"
+        fullname:
+          type: "string"
+        whatsappNumber:
+          type: "string"
+
+    uploadImage:
+      type: "object"
+      properties:
+        behalf:
+          type: "string"
+        img:
+          type: "string"
+
+    editProduct:
+      type: "object"
+      properties:
+        productId:
+          type: "string"
+        name:
+          type: "string"
+        img:
+          type: "string"
+        description:
+          type: "string"
+        price:
+          type: "string"
+        discountPrice:
+          type: "string"
+
+    publishPage:
+      type: "object"
+      properties:
+        pageId:
+          type: "string"
+        isPublish: # 0/1
+          type: "string"
+
+    editSeo:
+      type: "object"
+      properties:
+        seoId:
+          type: "string"
+        title:
+          type: "string"
+        description: 
+          type: "string"
+        keyword: 
+          type: "string"
+
+    notificationPayment:
+      type: "object"
+      properties:
+        merchantCode:
+          type: "string"
+        amount:
+          type: "string"
+        merchantOrderId: 
+          type: "string"
+        productDetail: 
+          type: "string"
+        additionalParam: 
+          type: "string"
+        paymentCode: 
+          type: "string"
+        resultCode: 
+          type: "string"
+        merchantUserId: 
+          type: "string"
+        reference: 
+          type: "string"
+        signature: 
+          type: "string"
+
+    editUrl:
+      type: "object"
+      properties:
+        urlName:
+          type: "string"
+    
+    otpConfirmation:
+      type: "object"
+      properties:
+        phone_code:
+          type: "string"
+        phone:
+          type: "string"
+        otp_code:
+          type: "string"
+        filter: # NOT REQUIRED (change_phone,use_exist)
+          type: "string"
+      example:
+        phone_code: "+62"
+        phone: "822123456789"
+        otp_code: "123456"
+        filter: "change_phone / use_exist / tidak perlu kirim field filter"
+        
+          
+    ApiResponse:
+      type: "object"
+      properties:
+        code:
+          type: "integer"
+          format: "int32"
+        type:
+          type: "string"
+        message:
+          type: "string"
+      example:
+        code: 0
+        type: "application/json"
+        message: "message"
+        
+  externalDocs:
+    description: "Find out more about Swagger"
+    url: "http://swagger.io"  
