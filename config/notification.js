@@ -23,7 +23,8 @@ exports.sendErrorNotification = async function(datalog = ""){
         })
       
     };
-    let result = await sentRequest(options);
+    // let result = await sentRequest(options);
+    let result = {}
     console.log("sendErrorNotification::", result);
     return result;
 }
