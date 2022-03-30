@@ -6,9 +6,7 @@ var isValid = '';
 const asym = require('../config/asymmetric');
 const check = require('../controllers/check');
 const validator = require('../class/validator');
-const accountService = require('../service/accountService');
 const masterService = require('../service/masterService');
-const backendService = require('../service/backendService');
 const checking = require('../controllers/check');
 const kredential = process.env.KREDENTIAL_KEY;
 const Cryptr = require('cryptr');
@@ -16,8 +14,6 @@ const fs = require('fs');
 const cryptr = new Cryptr(kredential)
 // let decode = require('im-decode');
 const bufferImage = require("buffer-image");
-
-const driverDivisionId = '9'; //division id driver from postgreq
 const asymmetric = require("../config/asymmetric");
 var log={}
 

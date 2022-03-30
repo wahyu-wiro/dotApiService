@@ -59,49 +59,6 @@ exports.getProfile = function (data) {
     })
 }
 
-exports.getActiveSubscriptionMerchant = function (data) {
-    return new Promise(async function (resolve, reject) {
-        try {
-            let gs = await getActiveSubscriptionMerchant(data);
-            resolve(gs);
-        } catch (e) {
-            console.log('Error getActiveSubscriptionMerchant => ', e)
-            notification.sendErrorNotification(e.stack);
-            message = {
-                "responseCode": process.env.ERRORINTERNAL_RESPONSE,
-                "responseMessage": "Internal server error. Try again later!"
-            }
-            resolve(message);
-        }
-    })
-}
-async function getActiveSubscriptionMerchant(data) {
-    try {
-        query = 'SELECT sm."isActive", sm."endDate", s.name as "subscriptionPlane" FROM "SubscriptionMerchants" sm, "Subscriptions" s WHERE sm."subscriptionId"= s.id and sm."merchantId" = $1 AND sm."isActive" = $2 order by sm.id desc limit 1';
-        param = [data.merchantId, 'true'];
-        exc = await pgCon.query(query, param);
-        if (exc.rowCount > 0) {
-            return ({
-                responseCode: process.env.SUCCESS_RESPONSE,
-                responseMessage: "Success",
-                data: exc.rows
-            })
-        } else {
-            return ({
-                responseCode: process.env.NOTFOUND_RESPONSE,
-                responseMessage: "Not found"
-            })
-        }
-    } catch (e) {
-        console.log('get active subscription merchant ===> ', e);
-        notification.sendErrorNotification(e.stack);
-        return ({
-            responseCode: process.env.ERRORINTERNAL_RESPONSE,
-            responseMessage: "Internal server error, please try again!"
-        })
-    }
-}
-
 async function getProfileAccount(data) {
     console.log('getProfileAccount data=>', data)
     try {
